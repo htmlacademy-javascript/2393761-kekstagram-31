@@ -1,21 +1,24 @@
 // Функция для проверки длины строки
 // 1 вариант c помощью тернарного оператора
-function stringСheck(string, length) {
+function stringСheckFirst(string, length) {
   return (string.length <= length) ? 'true' : 'false' ;
 }
+stringСheckFirst('проверяемая строка', 20);
+stringСheckFirst('проверяемая строка', 18);
+stringСheckFirst('проверяемая строка', 10);
 
 // 2 вариант c помощью условной конструкции if
-function stringСheck(string, length) {
-	if (string.length <= length) {
-	  return true;
-	}
-	return false;
+function stringСheckSecond(string, length) {
+  if (string.length <= length) {
+    return true;
   }
+  return false;
+}
 
 // Примеры использования функции
-stringСheck('проверяемая строка', 20);
-stringСheck('проверяемая строка', 18);
-stringСheck('проверяемая строка', 10);
+stringСheckSecond('проверяемая строка', 20);
+stringСheckSecond('проверяемая строка', 18);
+stringСheckSecond('проверяемая строка', 10);
 
 // Функция для проверки, является ли строка палиндромом:
 
@@ -26,11 +29,14 @@ stringСheck('проверяемая строка', 10);
 // c.превращаем строку в массив с помощью метода split('') ;
 // d.переворачиваем строку с помощью нативного метода для массива reverse();
 // e.убираем разделители между элементами массива с помощью метода join('');
-function palindromeRead(string){
-	string = string.toLowerCase().replace(/\s/g, '');
-	return  string === string.split('').reverse().join('');
+function palindromeReadFirst(string){
+  string = string.toLowerCase().replace(/\s/g, '');
+  return string === string.split('').reverse().join('');
 }
 
+palindromeReadFirst('топот');
+palindromeReadFirst('ДовОд');
+palindromeReadFirst('Кекс');
 // // 2 вариант: решение задачи с помощью цикла;
 // a.приводим строку к нижнему регистру методом toLowerCase();
 // b.возвращаем новую строку при помощи метода replace() и  удаляем из строки все символы кроме букв;
@@ -39,17 +45,18 @@ function palindromeRead(string){
 // e.если одна из пар неравна возвращаем false;
 // f.если дошли до середины то цикл завершается и возвращаем true;
 
-function palindromeRead(string){
-string = string.toLowerCase().replace(/[^a-zа-яё]/g, '');
-for(let i = 0; i < string.length / 2; i++ )
-if(string[i]!== string[string.length - i - 1]) {
-return false;
-}
-return true;
+function palindromeReadSecond(string){
+  string = string.toLowerCase().replace(/[^a-zа-яё]/g, '');
+  for(let i = 0; i < string.length / 2; i++) {
+    if(string[i] !== string[string.length - i - 1]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 
 // Примеры использования функции
-palindromeRead('топот');
-palindromeRead('ДовОд');
-palindromeRead('Кекс');
+palindromeReadSecond('топот');
+palindromeReadSecond('ДовОд');
+palindromeReadSecond('Кекс');
