@@ -1,7 +1,7 @@
 // Функция для проверки длины строки
 // 1 вариант c помощью тернарного оператора
 function stringСheckFirst(string, length) {
-  return (string.length <= length) ? 'true' : 'false' ;
+  return (string.length <= length) ;
 }
 stringСheckFirst('проверяемая строка', 20);
 stringСheckFirst('проверяемая строка', 18);
