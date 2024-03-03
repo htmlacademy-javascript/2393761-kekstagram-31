@@ -60,3 +60,25 @@ function palindromeReadSecond(string){
 palindromeReadSecond('топот');
 palindromeReadSecond('ДовОд');
 palindromeReadSecond('Кекс');
+
+function IscheckTime(startWorkTime, endWorkTime, startTimeMeet, durationTimeMeet) {
+  function toMinute(time) {
+    const [hour, minute] = time.split(':');
+    return parseInt(hour, 10) * 60 + parseInt(minute, 10);
+  }
+
+  const startWorkTimeMinute = toMinute(startWorkTime);
+  const endWorkTimeMinute = toMinute(endWorkTime);
+  const startMeetMinute = toMinute(startTimeMeet);
+
+  if(startMeetMinute >= startWorkTimeMinute && startMeetMinute + durationTimeMeet <= endWorkTimeMinute) {
+    return true;
+  }
+  return false;
+}
+
+IscheckTime('08:00', '17:30', '14:00', 90);
+IscheckTime('8:0', '10:0', '8:0', 120);
+IscheckTime('08:00', '14:30', '14:00', 90);
+IscheckTime('14:00', '17:30', '08:0', 90);
+IscheckTime('8:00', '17:30', '08:00', 900);
