@@ -34,7 +34,7 @@ const createPhoto = () => {
     const photo = {};
     photo.id = id;
     photo.url = `photos/${id}.jpg`;
-    photo.description = getRandomArrayElement();
+    photo.description = getRandomInteger();
     // `Это фотография №${id}`;
     photo.likes = numLikes();
     // Создаем список комментариев
