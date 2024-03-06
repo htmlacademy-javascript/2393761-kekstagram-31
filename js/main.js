@@ -4,5 +4,5 @@
 // import './data.js';
 import {isPhotoArray} from './IsPhotoArray.js';
 //
-console.log(isPhotoArray());
+// console.log(isPhotoArray());
 
