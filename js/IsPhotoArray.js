@@ -1,6 +1,6 @@
 import {getRandomInteger} from './util.js';
 import {NAMES,DESCRIPTIONS,MESSAGES,MIN_LIKES,MAX_LIKES,MIN_COMMENTS,MAX_COMMENTS,LENGTH_PHOTO} from './data.js';
-import {getRandomArrayElement} from './util.js';
+// import {getRandomArrayElement} from './util.js';
 
 // создание вложенного объекта Comments
 const createComment = () => {
