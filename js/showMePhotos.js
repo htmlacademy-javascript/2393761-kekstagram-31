@@ -32,7 +32,7 @@ const renderPhotos = (photos) => {
 };
 export {renderPhotos};
 
-
+// вариант 2
 // const pictures = document.querySelector('.pictures');
 // const template = document.querySelector('#picture').content.querySelector('.picture');
 
