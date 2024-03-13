@@ -1,9 +1,7 @@
-// <!-- импорты других модулей
-// вызовы общих функций
-// настрока скриптов -->
-// import './data.js';
-import {isPhotoArray} from './IsPhotoArray.js';
-isPhotoArray();
-//
-// console.log(isPhotoArray());
 
+import {arePhotoArray} from './arePhotoArray.js';
+import { renderPhotos } from './showMePhotos.js';
+
+
+const photos = arePhotoArray();
+renderPhotos(photos);
