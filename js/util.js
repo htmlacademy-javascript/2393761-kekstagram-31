@@ -19,5 +19,8 @@ const getRandomIdGenerator = (min, max) => {
   };
 };
 
-export {getRandomInteger, getRandomArrayElement, getRandomIdGenerator};
+//Проверка нажатой клавиши Escape
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomInteger, getRandomArrayElement, getRandomIdGenerator, isEscapeKey};
 
