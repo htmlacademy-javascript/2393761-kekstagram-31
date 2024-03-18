@@ -3,7 +3,7 @@ import {arePhotoArray} from './arePhotoArray.js';
 const photos = arePhotoArray();
 
 const bigPictureNode = document.querySelector('.big-picture');
-const bigPictureImgNode = bigPictureNode.querySelector('big-picture__img').querySelector('img');
+const bigPictureImgNode = bigPictureNode.querySelector('.big-picture__img') .querySelector('img');
 const likesCountNode = bigPictureNode.querySelector('.likes-count');
 const socialCommentsNode = bigPictureNode.querySelector('.social__comments');
 const socialCommentTemplate = socialCommentsNode.querySelector('.social__comment');
