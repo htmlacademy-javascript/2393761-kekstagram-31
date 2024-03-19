@@ -9,51 +9,27 @@
 //   </a>
 // </template>
 
+import { arePhotoArray } from './arePhotoArray';
 
-const renderPhotos = (photos) => {
-  const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
-  const picturesElement = document.querySelector('.pictures');
-  const photosFragment = document.createDocumentFragment();
 
-  photos.forEach(({url, description, likes, comments}, i) => {
-    const photoElement = photoTemplate.cloneNode(true);
-    const pictureElement = photoElement.querySelector('.picture__img');
-    const likesElement = photoElement.querySelector('.picture__likes');
-    const commentElement = photoElement.querySelector('.picture__comments');
+const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const picturesElement = document.querySelector('.pictures');
+const photosFragment = document.createDocumentFragment();
 
-    photoElement.setAttribute('data-photo-id', i);
-    pictureElement.src = url;
-    pictureElement.alt = description;
-    likesElement.textContent = likes;
-    commentElement.textContent = comments.length;
-    photosFragment.appendChild(photoElement);
+const photos = arePhotoArray();
+
+const renderingThumbnails = () => {
+  photos.forEach(({id, url, description, likes, comments}) => {
+    const photoThumbnails = photoTemplate.cloneNode(true);
+    photoThumbnails.dataset.pictureId = id;
+    const image = photoThumbnails.querySelector('.picture__img');
+    image.src = url;
+    image.alt = description;
+    photoThumbnails.querySelector('.picture__likes').textContent = likes;
+    photoThumbnails.querySelector('.picture__comments').textContent = comments.length;
+    photosFragment.appendChild(photoThumbnails);
   });
   picturesElement.appendChild(photosFragment);
 };
-export {renderPhotos};
 
-// вариант 2
-// const pictures = document.querySelector('.pictures');
-// const template = document.querySelector('#picture').content.querySelector('.picture');
-
-// const fragment = document.createDocumentFragment();
-
-// const renderPhoto = (photo) => {
-//   const thumbnail = template.cloneNode(true);
-
-//   const image = thumbnail.querySelector('.picture__img');
-
-//   image.src = photo.url;
-//   image.alt = photo.description;
-
-//   thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
-//   thumbnail.querySelector('.picture__likes').textContent = photo.likes;
-//   return thumbnail;
-// };
-
-// const renderPhotos = (objects) => {
-//   for (let i = 0; i < objects.length; i++) {
-//     fragment.appendChild(renderPhoto(objects[i]));
-//   }
-//   pictures.appendChild(fragment);
-// };
+export {photos, renderingThumbnails};

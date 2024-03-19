@@ -1,7 +1,8 @@
 
-import {arePhotoArray} from './arePhotoArray.js';
-import { renderPhotos } from './showMePhotos.js';
+
+import { renderingThumbnails } from './showMePhotos.js';
+import { openModalBigPicture } from './render-photo.js';
 
 
-const photos = arePhotoArray();
-renderPhotos(photos);
+renderingThumbnails();
+openModalBigPicture();
