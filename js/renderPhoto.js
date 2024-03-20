@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util';
 import { photos } from './showMePhotos';
-import { clearComments,renderComments } from './renderComments';
+import { clearComments, renderComments } from './renderComments';
 
 const body = document.querySelector('body');
 const pictureContainer = document.querySelector('.pictures');
@@ -22,7 +22,8 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const closeBigPictureClick = () => {
+const closeBigPictureClick = (evt) => {
+  evt.preventDefault();
   closeBigPicture();
 };
 
@@ -35,6 +36,12 @@ const openBigPicture = (pictureId) => {
   likesCountNode.textContent = currentPhoto.likes;
   commentsCaptionNode.textContent = currentPhoto.description;
 
+  renderComments(currentPhoto.comments);
+
+  bigPictureNode.classList.remove('hidden');
+  bigPictureCancelNode.addEventListener('click', closeBigPictureClick);
+  body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentKeydown);
   // socialCommentsNode.innerHTML = '';
 
   // currentPhoto.comments.forEach((comment) => {
@@ -53,13 +60,6 @@ const openBigPicture = (pictureId) => {
   // commentsLoaderNode.classList.add('hidden');
 
 
-  renderComments(currentPhoto.comments);
-
-
-  bigPictureNode.classList.remove('hidden');
-  bigPictureCancelNode.addEventListener('click', closeBigPictureClick);
-  body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
 };
 
 const openModalBigPicture = () => {
@@ -74,12 +74,12 @@ const openModalBigPicture = () => {
 
 function closeBigPicture () {
 
-  clearComments();
 
   document.body.classList.remove('modal-open');
   bigPictureNode.classList.add('hidden');
   bigPictureCancelNode.removeEventListener('click', closeBigPictureClick);
   document.removeEventListener('keydown', onDocumentKeydown);
+  clearComments();
 }
 
 export {openModalBigPicture};
