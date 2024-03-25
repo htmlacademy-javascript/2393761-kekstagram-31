@@ -8,7 +8,14 @@ const socialCommentTemplate = socialCommentsNode.querySelector('.social__comment
 const socialCommentShowCount = bigPictureNode.querySelector('.social__comment-shown-count'); //<span class="social__comment-shown-count">5</span>
 const socialCommentTotalCount = bigPictureNode.querySelector('.social__comment-total-count'); //<span class="social__comment-total-count">125</span>
 const commentsLoader = bigPictureNode.querySelector('.comments-loader'); //<button type="button" class="social__comments-loader  comments-loader">Загрузить еще
-socialCommentsNode.innerHTML = '';
+
+const clearComments = () => {
+  socialCommentsNode.innerHTML = '';
+};
+clearComments();
+
+
+// socialCommentsNode.innerHTML = '';
 
 const renderComments = (comments, i = 0, callback) => {
   const commentsLength = comments.length;
@@ -17,7 +24,9 @@ const renderComments = (comments, i = 0, callback) => {
 
   commentsLoader.removeEventListener('click', callback);
 
-  socialCommentsNode.innerHTML = '';
+  // socialCommentsNode.innerHTML = '';
+
+  clearComments();
 
   for (const element of eliminatedComments) {
     const comment = socialCommentTemplate.cloneNode(true);
@@ -43,10 +52,14 @@ const renderComments = (comments, i = 0, callback) => {
   };
 
   commentsLoader.addEventListener('click', clickHandler);
+
 };
 
-const clearComments = () => {
-  socialCommentTemplate.forEach((element) => element.remove());
-};
+clearComments();
+// const clearComments = () => {
+//   socialCommentTemplate.forEach((element) => element.remove());
+
+// };
+
 
 export {clearComments, renderComments};
