@@ -1,7 +1,7 @@
 
 
 import { renderingThumbnails } from './showMePhotos.js';
-import { openModalBigPicture } from './render-photo.js';
+import { openModalBigPicture } from './renderPhoto.js';
 
 
 renderingThumbnails();
