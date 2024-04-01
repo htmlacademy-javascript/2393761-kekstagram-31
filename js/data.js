@@ -1,16 +1,7 @@
-// import {getRandomArrayElement} from './util.js';
+//модуль, который создаёт данные
 
-//Описание объекта - описание фото
-//  {
-//   id -число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
-//   url - строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-//   description - cтрока — описание фотографии. Описание придумайте самостоятельно.
-//   likes - число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
-//   comments : [] - Массив объектов — список комментариев, оставленных другими пользователями к этой фотографии.
-//Количество комментариев к каждой фотографии — случайное число от 0 до 30.
+import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
 
-
-// набор имен (10)
 const NAME = [
   'Иван',
   'Себастьян',
@@ -60,11 +51,27 @@ const MESSAGE = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-const MIN_LIKES = 15;
-const MAX_LIKES = 200;
-const MIN_COMMENTS = 0;
-const MAX_COMMENTS = 30;
-const LENGTH_PHOTO = 25;
+const AMOUNT_POSTS = 25;
 
+const getRandomIdCommentsIndex = createRandomIdFromRangeGenerator(1, 30 * 25);
+const getRandomIdIndex = createRandomIdFromRangeGenerator(1, 25);
+const getRandomUrlIndex = createRandomIdFromRangeGenerator(1, 25);
 
-export {NAME,DESCRIPTION,MESSAGE,MIN_LIKES,MAX_LIKES,MIN_COMMENTS,MAX_COMMENTS,LENGTH_PHOTO};
+const createComments = () => ({
+  id: getRandomIdCommentsIndex (),
+  avatar: `img/avatar-${ (getRandomInteger(1, 6)) }.svg`,
+  message: ((getRandomInteger(1, 2)), getRandomArrayElement(MESSAGE)),
+  name:getRandomArrayElement(NAME),
+});
+
+const createPhotoPost = () => ({
+  id: getRandomIdIndex(),
+  url: `photos/${ getRandomUrlIndex() }.jpg`,
+  description: getRandomArrayElement(DESCRIPTION),
+  likes: getRandomInteger(15, 200),
+  comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
+});
+
+const createPosts = () => Array.from({length: AMOUNT_POSTS}, createPhotoPost);
+
+export {createPosts};
