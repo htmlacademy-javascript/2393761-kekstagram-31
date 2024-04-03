@@ -9,27 +9,28 @@
 //   </a>
 // </template>
 
-import { arePhotoArray } from './arePhotoArray';
+
+// import { arePhotoArray } from './arePhotoArray';
 
 
-const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const picturesElement = document.querySelector('.pictures');
-const photosFragment = document.createDocumentFragment();
+// const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+// const picturesElement = document.querySelector('.pictures');
+// const photosFragment = document.createDocumentFragment();
 
-const photos = arePhotoArray();
+// const photos = arePhotoArray();
 
-const renderingThumbnails = () => {
-  photos.forEach(({id, url, description, likes, comments}) => {
-    const photoThumbnails = photoTemplate.cloneNode(true);
-    photoThumbnails.dataset.pictureId = id;
-    const image = photoThumbnails.querySelector('.picture__img');
-    image.src = url;
-    image.alt = description;
-    photoThumbnails.querySelector('.picture__likes').textContent = likes;
-    photoThumbnails.querySelector('.picture__comments').textContent = comments.length;
-    photosFragment.appendChild(photoThumbnails);
-  });
-  picturesElement.appendChild(photosFragment);
-};
+// const renderingThumbnails = () => {
+//   photos.forEach(({id, url, description, likes, comments}) => {
+//     const photoThumbnails = photoTemplate.cloneNode(true);
+//     photoThumbnails.dataset.pictureId = id;
+//     const image = photoThumbnails.querySelector('.picture__img');
+//     image.src = url;
+//     image.alt = description;
+//     photoThumbnails.querySelector('.picture__likes').textContent = likes;
+//     photoThumbnails.querySelector('.picture__comments').textContent = comments.length;
+//     photosFragment.appendChild(photoThumbnails);
+//   });
+//   picturesElement.appendChild(photosFragment);
+// };
 
-export {photos, renderingThumbnails};
+// export {photos, renderingThumbnails};

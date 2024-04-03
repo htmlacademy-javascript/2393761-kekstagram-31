@@ -1,65 +1,48 @@
-const COMMENTS_SHOW_STEP = 5;
-// const currentCount = 0;
-// const comments = [];
+import {openBigPicture} from './renderPhoto.js';
 
-const bigPictureNode = document.querySelector('.big-picture');
-const socialCommentsNode = bigPictureNode.querySelector('.social__comments'); //<ul class="social__comments">
-const socialCommentTemplate = socialCommentsNode.querySelector('.social__comment');//<li class="social__comment">
-const socialCommentShowCount = bigPictureNode.querySelector('.social__comment-shown-count'); //<span class="social__comment-shown-count">5</span>
-const socialCommentTotalCount = bigPictureNode.querySelector('.social__comment-total-count'); //<span class="social__comment-total-count">125</span>
-const commentsLoader = bigPictureNode.querySelector('.comments-loader'); //<button type="button" class="social__comments-loader  comments-loader">Загрузить еще
+//находим шаблон фотографии пользователя
+const templateUserPicture = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
 
-const clearComments = () => {
-  socialCommentsNode.innerHTML = '';
-};
-clearComments();
+//контейнер, в который будем вкладывать фотографии
+const containerUsersPictures = document.querySelector('.pictures');
 
+// создаем массив фотографий
+const createPosts = (usersPictures) => {
+  //Создаём "коробочку"
+  const usersPicturesFragment = document.createDocumentFragment();
+  //перебираем фотографии
+  usersPictures.forEach(({url, description, likes, comments, id}) => {
+    //клонируем шаблон
+    const userPicture = templateUserPicture.cloneNode(true);
 
-// socialCommentsNode.innerHTML = '';
+    //вставляем данные в шаблон
+    userPicture.querySelector('.picture__img').src = url;
+    userPicture.querySelector('.picture__img').alt = description;
+    userPicture.querySelector('.picture__likes').textContent = likes;
+    userPicture.querySelector('.picture__comments').textContent = comments.length;
+    userPicture.dataset.id = id;
 
-const renderComments = (comments, i = 0, callback) => {
-  const commentsLength = comments.length;
-  const visibleCommentsCount = COMMENTS_SHOW_STEP + (COMMENTS_SHOW_STEP * i);
-  const eliminatedComments = comments.slice(0, visibleCommentsCount);
+    //складываем фотографии в "коробку"
+    usersPicturesFragment.appendChild(userPicture);
+  });
 
-  commentsLoader.removeEventListener('click', callback);
+  // И только в конце отрисовываем всё из "коробочки"
+  containerUsersPictures.appendChild(usersPicturesFragment);
 
-  // socialCommentsNode.innerHTML = '';
+  //Большое фото открывается при клике на миниатюру
+  containerUsersPictures.addEventListener('click', (evt) => {
+    const picture = evt.target.closest('.picture');
 
-  clearComments();
+    if(picture){
+      evt.preventDefault();
+      //в массиве фотографий находим элемент/фото, id которого равно id, по которому произошел клик
+      const currentPicture = usersPictures.find((item) => picture.dataset.id === item.id.toString());
 
-  for (const element of eliminatedComments) {
-    const comment = socialCommentTemplate.cloneNode(true);
-    comment.querySelector('.social__picture').src = element.avatar;
-    comment.querySelector('.social__picture').alt = element.name;
-    comment.querySelector('.social__text').textContent = element.message;
-
-    socialCommentShowCount.textContent = eliminatedComments.length;
-
-    socialCommentsNode.append(comment);
-  }
-
-  socialCommentTotalCount.textContent = commentsLength;
-
-  if (commentsLength < COMMENTS_SHOW_STEP || commentsLength <= visibleCommentsCount) {
-    commentsLoader.classList.add('hidden');
-  } else {
-    commentsLoader.classList.remove('hidden');
-  }
-
-  const clickHandler = () => {
-    renderComments(comments, i + 1, clickHandler);
-  };
-
-  commentsLoader.addEventListener('click', clickHandler);
-
+      openBigPicture(currentPicture);
+    }
+  });
 };
 
-clearComments();
-// const clearComments = () => {
-//   socialCommentTemplate.forEach((element) => element.remove());
-
-// };
-
-
-export {clearComments, renderComments};
+export {createPosts};
