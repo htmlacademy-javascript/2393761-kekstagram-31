@@ -1,26 +1,48 @@
-// Функция получение случайного положительного целочисленного числа. Функция возвращает число из диапазона возможных индексов массива
-// const getRandomInteger = (a, b) => {
-//   const lower = Math.ceil(Math.min(a, b));
-//   const upper = Math.floor(Math.max(a, b));
-//   const result = Math.random() * (upper - lower + 1) + lower;
-//   return Math.floor(result);
-// };
-// const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-// генератор  id
-// const getRandomIdGenerator = (min, max) => {
-//   const ids = [];
-//   return function() {
-//     let id = getRandomInteger(min, max);
-//     while(ids.includes(id)) {
-//       id = getRandomInteger(min, max);
-//     }
-//     ids.push(id);
-//     return id;
-//   };
-// };
+//Создание случайных неповторяющихся идентификаторов из указанного диапазона
+function getRandomInteger (min, max) {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
+}
+
+function createRandomIdFromRangeGenerator (min, max) {
+  const previousValues = [];
+
+  return function () {
+    let currentValue = getRandomInteger(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+}
+
+//Создание массива случайных элементов
+const getRandomElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
 //Проверка нажатой клавиши Escape
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { isEscapeKey};
+//Функция устранения дребизга
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
 
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {
+  getRandomInteger,
+  createRandomIdFromRangeGenerator,
+  getRandomElement,
+  isEscapeKey,
+  debounce
+};

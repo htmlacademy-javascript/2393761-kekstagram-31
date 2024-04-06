@@ -1,21 +1,21 @@
+import { renderingThumbnails } from './rendering-thumbnails.js';
+import { openModalBigPicture } from './modal-picture.js';
+import { initUploadModal } from './image-upload-form.js';
+import { closePhotoEditor } from './image-upload-form.js';
+import { setUserFormSubmit } from './image-upload-form.js';
+import { getData } from './api.js';
+import { showErrorMessage } from './messages.js';
+import { loadingImage } from './loading-image.js';
+import { configFilter } from './filters.js';
 
-import './util.js';
-import './renderPhoto.js';
-import './renderComments.js';
-import './form.js';
-import './validateForm.js';
-import './scaleButtons.js';
-import './imgEffects.js';
+getData().then((photos) => {
+  renderingThumbnails(photos);
+  configFilter(photos);
+}).catch((error) => {
+  showErrorMessage(error.message);
+});
 
-import {getData} from './api.js';
-import {createPosts} from './renderComments.js';
-import {closeButton} from './form.js';
-import {setUserFormSubmit} from './validateForm.js';
-
-getData()
-  .then((posts) => {
-    createPosts(posts);
-  });
-
-
-setUserFormSubmit(closeButton);
+setUserFormSubmit(closePhotoEditor);
+openModalBigPicture();
+initUploadModal();
+loadingImage();
