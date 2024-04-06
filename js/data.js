@@ -1,8 +1,8 @@
 //модуль, который создаёт данные
 
-import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
+// import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
 
-const NAME = [
+const NAMES = [
   'Иван',
   'Себастьян',
   'Мария',
@@ -14,7 +14,7 @@ const NAME = [
   'Любомир',
   'Василий'];
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Это крупномасштабная аллегорическая картина изображает выбор Геркулеса между добродетелью и пороком, олицетворённые на этом полотне фигурами двух женщин, физически тянущих его в разные стороны',
   'Картина посвящена событиям русификации Финляндии и аллегорически изображает нападение двуглавого орла на финскую девушку. Находится в коллекции Национального музея Финляндии в Хельсинки',
   'На картине изображён Амур с тёмными крыльями, полусидящий или слезающий с некоего возвышения. Вокруг лежат разбросанные им предметы, так или иначе связанные с человеческой деятельностью',
@@ -43,7 +43,7 @@ const DESCRIPTION = [
 ];
 
 // // набор сообщений (8)
-const MESSAGE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -51,27 +51,28 @@ const MESSAGE = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-const AMOUNT_POSTS = 25;
+// const AMOUNT_POSTS = 25;
 
-const getRandomIdCommentsIndex = createRandomIdFromRangeGenerator(1, 30 * 25);
-const getRandomIdIndex = createRandomIdFromRangeGenerator(1, 25);
-const getRandomUrlIndex = createRandomIdFromRangeGenerator(1, 25);
+// const getRandomIdCommentsIndex = createRandomIdFromRangeGenerator(1, 30 * 25);
+// const getRandomIdIndex = createRandomIdFromRangeGenerator(1, 25);
+// const getRandomUrlIndex = createRandomIdFromRangeGenerator(1, 25);
 
-const createComments = () => ({
-  id: getRandomIdCommentsIndex (),
-  avatar: `img/avatar-${ (getRandomInteger(1, 6)) }.svg`,
-  message: ((getRandomInteger(1, 2)), getRandomArrayElement(MESSAGE)),
-  name:getRandomArrayElement(NAME),
-});
+// const createComments = () => ({
+//   id: getRandomIdCommentsIndex (),
+//   avatar: `img/avatar-${ (getRandomInteger(1, 6)) }.svg`,
+//   message: ((getRandomInteger(1, 2)), getRandomArrayElement(MESSAGE)),
+//   name:getRandomArrayElement(NAME),
+// });
 
-const createPhotoPost = () => ({
-  id: getRandomIdIndex(),
-  url: `photos/${ getRandomUrlIndex() }.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
-});
+// const createPhotoPost = () => ({
+//   id: getRandomIdIndex(),
+//   url: `photos/${ getRandomUrlIndex() }.jpg`,
+//   description: getRandomArrayElement(DESCRIPTION),
+//   likes: getRandomInteger(15, 200),
+//   comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
+// });
 
-const createPosts = () => Array.from({length: AMOUNT_POSTS}, createPhotoPost);
+// const createPosts = () => Array.from({length: AMOUNT_POSTS}, createPhotoPost);
 
-export {createPosts};
+// export {createPosts};
+export {NAMES, MESSAGES, DESCRIPTIONS};
