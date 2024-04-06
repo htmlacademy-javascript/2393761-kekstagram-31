@@ -6,13 +6,13 @@ const uploadForm = document.querySelector('.img-upload__form');
 const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
 const effectsPreview = document.querySelectorAll('.effects__preview');
 
-const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+const EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
 
 const loadingImage = () => {
   fileChooser.addEventListener('change', () => {
     const file = fileChooser.files[0];
     const fileName = file.name.toLowerCase();
-    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    const matches = EXTENSIONS.some((it) => fileName.endsWith(it));
 
     if (matches) {
       const url = URL.createObjectURL(file);

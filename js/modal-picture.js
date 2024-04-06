@@ -50,6 +50,7 @@ const openModalBigPicture = () => {
 function closeBigPicture () {
   modalBigPicture.classList.add('hidden');
   bigPictureCancel.removeEventListener('click', closeBigPictureClick);
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
 
   clearComments();

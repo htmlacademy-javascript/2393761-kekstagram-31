@@ -1,6 +1,5 @@
 //модуль, который создаёт данные
 
-// import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
 
 const NAMES = [
   'Иван',
@@ -42,7 +41,7 @@ const DESCRIPTIONS = [
   'Картина в аллегорическом виде описывает морскую битву при Лепанто (1571), в которой флот Священной лиги одержал победу над флотом Османской империи',
 ];
 
-// // набор сообщений (8)
+
 const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -51,28 +50,5 @@ const MESSAGES = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-// const AMOUNT_POSTS = 25;
 
-// const getRandomIdCommentsIndex = createRandomIdFromRangeGenerator(1, 30 * 25);
-// const getRandomIdIndex = createRandomIdFromRangeGenerator(1, 25);
-// const getRandomUrlIndex = createRandomIdFromRangeGenerator(1, 25);
-
-// const createComments = () => ({
-//   id: getRandomIdCommentsIndex (),
-//   avatar: `img/avatar-${ (getRandomInteger(1, 6)) }.svg`,
-//   message: ((getRandomInteger(1, 2)), getRandomArrayElement(MESSAGE)),
-//   name:getRandomArrayElement(NAME),
-// });
-
-// const createPhotoPost = () => ({
-//   id: getRandomIdIndex(),
-//   url: `photos/${ getRandomUrlIndex() }.jpg`,
-//   description: getRandomArrayElement(DESCRIPTION),
-//   likes: getRandomInteger(15, 200),
-//   comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
-// });
-
-// const createPosts = () => Array.from({length: AMOUNT_POSTS}, createPhotoPost);
-
-// export {createPosts};
 export {NAMES, MESSAGES, DESCRIPTIONS};
