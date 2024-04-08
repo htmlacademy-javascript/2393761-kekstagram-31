@@ -1,9 +1,22 @@
 import {closeElement, showElement,isEscapeKey, addModalOpen, removeModalOpen} from './util.js';
-import {imgUploadInputElement, imgUploadOverlayElement, imgPreviewElement, previewCloseButtonElement, scaleControlSmallerElement,
-  scaleControlBiggerElement, scaleControlValueElement, effectLevelValueElement, imgUploadEffectsElement, effectLevelSliderElement,
-  imgUploadEffectLevelElement, imgUploadFormElement} from './project-wide-search-elements.js';
 import {pristine} from './validaty-hashtags.js';
-import {appendPreviewPhoto} from './append-preview-image.js';
+import {appendPreviewPhoto} from './append-new-photo.js';
+
+const imgUploadElement = document.querySelector('.img-upload');
+const imgUploadInputElement = imgUploadElement.querySelector('.img-upload__input');
+const imgUploadOverlayElement = imgUploadElement.querySelector('.img-upload__overlay');
+const imgUploadPreviewContainerElement = imgUploadOverlayElement.querySelector('.img-upload__preview-container');
+const imgUploadPreviewElement = imgUploadPreviewContainerElement.querySelector('.img-upload__preview');
+const imgPreviewElement = imgUploadPreviewElement.querySelector('img');
+const previewCloseButtonElement = imgUploadPreviewContainerElement.querySelector('.img-upload__cancel');
+const scaleControlSmallerElement = imgUploadPreviewContainerElement.querySelector('.scale__control--smaller');
+const scaleControlBiggerElement = imgUploadPreviewContainerElement.querySelector('.scale__control--bigger');
+const scaleControlValueElement = imgUploadPreviewContainerElement.querySelector('.scale__control--value');
+const imgUploadEffectLevelElement = imgUploadPreviewContainerElement.querySelector('.img-upload__effect-level');
+const effectLevelValueElement = imgUploadEffectLevelElement.querySelector('.effect-level__value');
+const imgUploadEffectsElement = imgUploadOverlayElement.querySelector('.img-upload__effects');
+const effectLevelSliderElement = imgUploadEffectLevelElement.querySelector('.effect-level__slider');
+const imgUploadFormElement = imgUploadElement.querySelector('.img-upload__form');
 
 const DEFAULT_STEP = 25;
 const SCALE_MIN = 25;
@@ -65,6 +78,7 @@ const resetInputFile = () => {
 
 const onScaleDownClick = () => {
   let currentValue = parseInt(scaleControlValueElement.value, 10);
+
   if (currentValue > SCALE_MIN) {
     currentValue -= DEFAULT_STEP;
     scaleControlValueElement.value = currentValue + PERCENT;
@@ -73,6 +87,7 @@ const onScaleDownClick = () => {
 };
 const onScaleUpClick = () => {
   let currentValue = parseInt(scaleControlValueElement.value, 10);
+
   if (currentValue < SCALE_MAX) {
     currentValue += DEFAULT_STEP;
     scaleControlValueElement.value = currentValue + PERCENT;
@@ -83,6 +98,7 @@ const onScaleUpClick = () => {
 const onUpdateSliderChange = (evt) => {
   const effect = evt.target.value;
   const isNoneEffect = effect === 'none';
+
   if (isNoneEffect) {
     closeElement(imgUploadEffectLevelElement);
   } else {
@@ -142,6 +158,7 @@ const onUploadCloseClick = () => {
 };
 
 function onEscKeyDown (evt) {
+
   if (isEscapeKey(evt)) {
     onUploadCloseClick();
   }

@@ -1,4 +1,6 @@
-import {bodyElement, dataErrorTemplate, imgFiltersInactiveElement} from './project-wide-search-elements.js';
+const bodyElement = document.querySelector('body');
+const dataErrorTemplate = bodyElement.querySelector('#data-error').content;
+const imgFiltersInactiveElement = document.querySelector('.img-filters--inactive');
 
 const TIME_OUT = 5000;
 

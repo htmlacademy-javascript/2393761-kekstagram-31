@@ -2,8 +2,13 @@ import {sendData} from './api.js';
 import {appendNotification} from './notifications-form.js';
 import {onUploadCloseClick} from './photo-upload-form.js';
 import {pristine, textCommentsElement, textHashtagsElement} from './validaty-hashtags.js';
-import {submitButtonElement, imgUploadFormElement} from './project-wide-search-elements.js';
-import {templateSuccess, templateError} from './project-wide-search-elements.js';
+
+const imgUploadElement = document.querySelector('.img-upload');
+const imgUploadFormElement = imgUploadElement.querySelector('.img-upload__form');
+const submitButtonElement = imgUploadFormElement.querySelector('.img-upload__submit');
+const bodyElement = document.querySelector('body');
+const templateSuccess = bodyElement.querySelector('#success').content;
+const templateError = bodyElement.querySelector('#error').content;
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',

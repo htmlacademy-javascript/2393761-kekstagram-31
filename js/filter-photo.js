@@ -1,9 +1,12 @@
-import {imgFiltersElement, picturesContainerElement} from './project-wide-search-elements.js';
 import {debounce} from './util.js';
-import {addThumbnails,} from './add-pictures.js';
+import {addThumbnails,} from './add-thumbnails.js';
+
+const imgFiltersElement = document.querySelector('.img-filters');
+const picturesContainerElement = document.querySelector('.pictures');
+const FILTERS_BUTTON_ACTIVE = 'img-filters__button--active';
 
 const QUANTITY_PHOTOS = 10;
-const FILTERS_BUTTON_ACTIVE = 'img-filters__button--active';
+
 const sortDiscussed = (a, b) => b.comments.length - a.comments.length;
 const sortRandom = () => 0.5 - Math.random();
 
@@ -26,6 +29,7 @@ const updateGallery = (filteredPhotos) => {
 const debouncedUpdateGallery = debounce(updateGallery);
 const useFilters = () => {
   let filterPhotos = [];
+
   if (currentFilter === Filters.DEFAULT) {
     filterPhotos = photos.slice();
   } else if (currentFilter === Filters.RANDOM) {
@@ -38,10 +42,12 @@ const useFilters = () => {
 
 const onFilterChange = (evt) => {
   const targetButton = evt.target;
+
   if (!targetButton.matches('button')) {
     return;
   }
   const activeButton = imgFiltersElement.querySelector(`.${FILTERS_BUTTON_ACTIVE}`);
+
   if (activeButton) {
     activeButton.classList.remove(FILTERS_BUTTON_ACTIVE);
   }

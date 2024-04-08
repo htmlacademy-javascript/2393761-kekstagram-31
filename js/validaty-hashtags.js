@@ -1,7 +1,10 @@
-import {imgUploadFormElement, textHashtagsElement, textCommentsElement} from './project-wide-search-elements.js';
+const imgUploadElement = document.querySelector('.img-upload');
+const imgUploadFormElement = imgUploadElement.querySelector('.img-upload__form');
+const textHashtagsElement = imgUploadFormElement.querySelector('.text__hashtags');
+const textCommentsElement = imgUploadFormElement.querySelector('.text__description');
 
-const MAX_NUMBER_HASHTAGS = 5; //максимальное количество хештегов
-const MAX_NUMBER_SYMBOLS = 20; //максимальная длина хештега
+const MAX_NUMBER_HASHTAGS = 5; //maximum number of hashtags
+const MAX_NUMBER_SYMBOLS = 20; //maximum hashtag length
 
 const pristine = new Pristine(imgUploadFormElement, {
   classTo: 'img-upload__field-wrapper',
@@ -56,6 +59,7 @@ const isHashtagValid = (value) => {
   ];
   return rules.every((rule) => {
     const isInvalid = rule.check;
+
     if (isInvalid) {
       errorMessageHashtag = rule.addHashtagError;
     }

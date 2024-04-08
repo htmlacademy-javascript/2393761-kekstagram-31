@@ -1,4 +1,4 @@
-import {addThumbnails,} from './add-pictures.js';
+import {addThumbnails,} from './add-thumbnails.js';
 import {getData} from './api.js';
 import {initializeGallery} from './big-photo.js';
 import {showErrorMessage, makeOpacityOne} from './util.js';

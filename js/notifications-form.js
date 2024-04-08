@@ -1,5 +1,6 @@
-import {bodyElement} from './project-wide-search-elements.js';
 import {isEscapeKey} from './util.js';
+
+const bodyElement = document.querySelector('body');
 
 const getExistingElement = () => document.querySelector('.success') || document.querySelector('.error');
 
