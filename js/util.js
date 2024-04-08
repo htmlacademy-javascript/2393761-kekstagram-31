@@ -1,48 +1,48 @@
-//Создание случайных неповторяющихся идентификаторов из указанного диапазона
-function getRandomInteger (min, max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
+const bodyElement = document.querySelector('body');
+const dataErrorTemplate = bodyElement.querySelector('#data-error').content;
+const imgFiltersInactiveElement = document.querySelector('.img-filters--inactive');
 
-  return Math.floor(result);
-}
+const TIME_OUT = 5000;
 
-function createRandomIdFromRangeGenerator (min, max) {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-}
-
-//Создание массива случайных элементов
-const getRandomElement = (array) => array[getRandomInteger(0, array.length - 1)];
-
-//Проверка нажатой клавиши Escape
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-//Функция устранения дребизга
-function debounce (callback, timeoutDelay = 500) {
-  let timeoutId;
+const addModalOpen = () => {
+  bodyElement.classList.add('modal-open');
+};
+const removeModalOpen = () => {
+  bodyElement.classList.remove('modal-open');
+};
+const closeElement = (element) => element.classList.add('hidden');
+const showElement = (element) => element.classList.remove('hidden');
 
+const showErrorMessage = () => {
+  const errorMessage = dataErrorTemplate.cloneNode(true);
+  bodyElement.append(errorMessage);
+  const dataErrorMessage = bodyElement.querySelector('.data-error');
+  setTimeout(() => {
+    dataErrorMessage.remove();
+  }, TIME_OUT);
+};
+
+const makeOpacityOne = () => {
+  imgFiltersInactiveElement.style.opacity = '1';
+};
+
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 export {
-  getRandomInteger,
-  createRandomIdFromRangeGenerator,
-  getRandomElement,
   isEscapeKey,
+  closeElement,
+  showElement,
+  addModalOpen,
+  removeModalOpen,
+  showErrorMessage,
+  makeOpacityOne,
   debounce
 };
