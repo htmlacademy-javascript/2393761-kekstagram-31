@@ -5,6 +5,7 @@ const textCommentsElement = imgUploadFormElement.querySelector('.text__descripti
 
 const MAX_NUMBER_HASHTAGS = 5; //maximum number of hashtags
 const MAX_NUMBER_SYMBOLS = 20; //maximum hashtag length
+const COMMENT_LENGTH = 140; //comment length
 
 const pristine = new Pristine(imgUploadFormElement, {
   classTo: 'img-upload__field-wrapper',
@@ -18,7 +19,7 @@ let errorMessageHashtag = '';
 
 const addHashtagError = () => errorMessageHashtag;
 
-const validateComments = (value) => value.length === 0 || value.length <= 140;
+const validateComments = (value) => value.length === 0 || value.length <= COMMENT_LENGTH;
 
 const isHashtagValid = (value) => {
   errorMessageHashtag = '';
@@ -69,7 +70,7 @@ const isHashtagValid = (value) => {
 
 const initValidaation = () => {
   pristine.addValidator(textHashtagsElement, isHashtagValid, () => addHashtagError(), 2, false);
-  pristine.addValidator(textCommentsElement, validateComments, 'Максимальная длина 140 символов', 2, false);
+  pristine.addValidator(textCommentsElement, validateComments, `Максимальная длина ${COMMENT_LENGTH} символов`, 2, false);
 
   textHashtagsElement.addEventListener('keydown', (e) => e.stopPropagation());
   textCommentsElement.addEventListener('keydown', (e) => e.stopPropagation());
